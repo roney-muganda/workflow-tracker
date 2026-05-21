@@ -192,7 +192,6 @@ Under Review
 Illegal transitions are blocked both in the backend and frontend.
 
 ---
-
 ```text
 workflow-tracker/
 │
@@ -211,9 +210,9 @@ workflow-tracker/
 │   └── vite.config.js
 │
 └── README.md
-
-
+```
 ---
+
 
 # 🚀 Future Improvements
 
