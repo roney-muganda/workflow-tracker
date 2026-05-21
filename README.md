@@ -3,16 +3,16 @@
 ## 📸 Application Previews
 
 ### 1. Dashboard View
-![Dashboard View](docs/Dashboard%20List.png)
+<img src="docs/Dashboard List.png" width="800" alt="Dashboard View">
 
 ### 2. Form Validation
-![Create Form](docs/form.png)
+<img src="docs/form.png" width="800" alt="Form Validation View">
 
 ### 3. Review Application
-![Review Actions](docs/Start%20Review.png)
+<img src="docs/Start Review.png" width="800" alt="Review Application View">
 
 ### 4. Reject Application
-![Review Actions](docs/Reject%20and%20reason.png)
+<img src="docs/Reject and reason.png" width="800" alt="Reject Application View">
 
 A full-stack web application designed to track applications through a strict workflow:
 
