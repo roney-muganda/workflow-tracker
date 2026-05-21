@@ -193,7 +193,7 @@ Illegal transitions are blocked both in the backend and frontend.
 
 ---
 
-# 📁  Project Structure
+```text
 workflow-tracker/
 │
 ├── backend/
