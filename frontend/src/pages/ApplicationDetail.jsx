@@ -42,7 +42,8 @@ export default function ApplicationDetail() {
       fetchApplication(); // Refresh the data to get the new status
     } catch (err) {
       setError(err.response?.data?.detail || "Action failed.");
-      setActionLoading(false);
+    } finally {
+        setActionLoading(false);
     }
   };
 
