@@ -11,6 +11,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<ApplicationList />} />
           <Route path="new" element={<ApplicationForm />} />
+          <Route path="edit/:id" element={<ApplicationForm />} />
           <Route path=":id" element={<ApplicationDetail />} />
         </Route>
       </Routes>
