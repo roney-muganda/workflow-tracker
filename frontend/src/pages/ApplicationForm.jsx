@@ -18,6 +18,7 @@ export default function ApplicationForm() {
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(isEditMode);
   const [error, setError] = useState(null);
+  const [blockingError, setBlockingError] = useState(false);
 
   const applicationTypes = [
     'Recordation',
@@ -35,6 +36,7 @@ export default function ApplicationForm() {
           // Only Drafts and Need More Info can be edited based on our backend rules
           if (response.data.status !== 'Draft' && response.data.status !== 'Need More Information') {
             setError("Only Draft or 'Need More Information' applications can be edited.");
+            setBlockingError(true);
           } else {
             setFormData({
               applicant_name: response.data.applicant_name,
@@ -93,7 +95,7 @@ export default function ApplicationForm() {
       )}
 
       {/* Disable form if there is a blocking error (e.g., trying to edit an Approved app) */}
-      <form onSubmit={handleSubmit} className={error && isEditMode ? 'opacity-50 pointer-events-none' : ''}>
+      <form onSubmit={handleSubmit} className={blockingError ? 'opacity-50 pointer-events-none' : ''}>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           
           <div className="sm:col-span-2">
