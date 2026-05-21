@@ -1,5 +1,8 @@
 # Mini Application Workflow Tracker
 
+**Developer:** Roney Baraka Muganda  
+**Email:** barakaroney001@gmail.com
+
 ## 📸 Application Previews
 
 <table>
