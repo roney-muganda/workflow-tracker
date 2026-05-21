@@ -38,8 +38,13 @@ class Application(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.tracking_number:
-            # Generate tracking number like APP-1A2B3C
-            self.tracking_number = f"APP-{uuid.uuid4().hex[:6].upper()}"
+           # Generate tracking number with a retry loop to guarantee uniqueness
+            while True:
+                candidate_number = f"APP-{uuid.uuid4().hex[:8].upper()}"
+                # Check if this exact tracking number already exists
+                if not Application.objects.filter(tracking_number=candidate_number).exists():
+                    self.tracking_number = candidate_number
+                    break 
         super().save(*args, **kwargs)
 
     # --- State Transition Logic ---
@@ -60,6 +65,16 @@ class Application(models.Model):
     def record_decision(self, decision, comment=None):
         if self.status != self.Status.UNDER_REVIEW:
             raise ValidationError("Only applications Under Review can receive a decision.")
+        
+        # Enforce that the decision is a valid end-state
+        valid_decisions = [
+            self.Status.APPROVED, 
+            self.Status.REJECTED, 
+            self.Status.NEED_MORE_INFO
+        ]
+        
+        if decision not in valid_decisions:
+            raise ValidationError(f"Invalid decision. Must be one of {valid_decisions}.")
         
         if decision in [self.Status.NEED_MORE_INFO, self.Status.REJECTED] and not comment:
             raise ValidationError(f"A comment is required when decision is {decision}.")
